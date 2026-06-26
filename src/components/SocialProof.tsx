@@ -18,7 +18,7 @@ export function SocialProof() {
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
               <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
-            NexusData
+            Fluxa
           </div>
           <div className="flex items-center gap-2 font-mono font-bold text-xl text-oceanic-noir">
             <svg className="w-8 h-8 text-forsythia" viewBox="0 0 24 24" fill="currentColor">

@@ -116,9 +116,20 @@ html.dark [class*="text-nocturnal-expedition"] {
 }
 
 /* Retain light text colors inside dark sections that must remain light */
+html.dark .text-mystic-mint,
+html.dark [class*="text-mystic-mint"] {
+  color: #d9e8e2 !important; /* Elegant light mint */
+}
+
 html.dark .text-arctic-powder,
 html.dark [class*="text-arctic-powder"] {
-  color: #ffffff !important;
+  color: #f1f6f4 !important; /* High contrast off-white */
+}
+
+/* Refine borders in dark mode to be subtle and clean */
+html.dark .border-mystic-mint,
+html.dark [class*="border-mystic-mint"] {
+  border-color: rgba(217, 232, 226, 0.12) !important;
 }
 
 /* Invert standard white cards into dark high-contrast cards */

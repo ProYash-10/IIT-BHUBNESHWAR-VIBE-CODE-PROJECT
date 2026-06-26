@@ -15,7 +15,6 @@ import { CaseStudiesDetail } from './components/CaseStudiesDetail';
 import { BackToTop } from './components/BackToTop';
 import { LegalOverlay } from './components/LegalOverlay';
 import { Navbar } from './components/Navbar';
-import { WorkflowCanvas } from './components/WorkflowCanvas';
 import { NotFound404 } from './components/NotFound404';
 import { DocsOverlay } from './components/DocsOverlay';
 
@@ -69,7 +68,7 @@ export default function App() {
       <Navbar />
 
       {/* Hero Section */}
-      <header className="relative py-24 px-4 text-center flex flex-col items-center justify-center min-h-[75vh] overflow-hidden">
+      <header id="workflow" className="relative py-24 px-4 text-center flex flex-col items-center justify-center min-h-[75vh] overflow-hidden scroll-mt-20">
         <Hero3D />
         
         {/* Subtle radial gradient to ensure text readability over 3D background */}
@@ -108,9 +107,6 @@ export default function App() {
 
       {/* Social Proof */}
       <SocialProof />
-
-      {/* Interactive Agent Workflow Canvas */}
-      <WorkflowCanvas />
 
       {/* Dynamic Real-time Output Pipeline Monitor */}
       <PipelineStream />

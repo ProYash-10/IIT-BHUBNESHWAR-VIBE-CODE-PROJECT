@@ -6,7 +6,7 @@ interface DocsOverlayProps {
   onClose: () => void;
 }
 
-type DocSection = 'quickstart' | 'canvas' | 'telemetry' | 'api';
+type DocSection = 'quickstart' | 'telemetry' | 'api';
 
 export function DocsOverlay({ isOpen, onClose }: DocsOverlayProps) {
   const [activeSection, setActiveSection] = useState<DocSection>('quickstart');
@@ -33,18 +33,18 @@ export function DocsOverlay({ isOpen, onClose }: DocsOverlayProps) {
   };
 
   const codeSnippets = {
-    curlTrigger: `curl -X POST "https://api.nexus-data.io/v1/pipelines/trigger" \\
-  -H "Authorization: Bearer $NEXUS_API_KEY" \\
+    curlTrigger: `curl -X POST "https://api.fluxa.io/v1/pipelines/trigger" \\
+  -H "Authorization: Bearer $FLUXA_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
     "pipelineId": "pl-ingress-telemetry-09x",
     "payload": { "device_id": "sensor_992", "metric": "temperature", "val": 42.1 },
     "priority": "HIGH_SLA"
   }'`,
-    nodeSnippet: `import { NexusEngine } from '@nexus-data/sdk';
+    nodeSnippet: `import { FluxaEngine } from '@fluxa/sdk';
 
-const engine = new NexusEngine({
-  apiKey: process.env.NEXUS_API_KEY,
+const engine = new FluxaEngine({
+  apiKey: process.env.FLUXA_API_KEY,
   region: 'us-east4'
 });
 
@@ -55,9 +55,9 @@ stream.on('data', (payload) => {
 });
 
 await stream.start();`,
-    pythonSnippet: `import nexus_sdk
+    pythonSnippet: `import fluxa_sdk
 
-client = nexus_sdk.Client(api_key="your_api_key_here")
+client = fluxa_sdk.Client(api_key="your_api_key_here")
 
 # Trigger pipeline execution asynchronously
 response = client.pipelines.trigger(
@@ -70,9 +70,8 @@ print(f"Workflow triggered. Execution ID: {response.execution_id}")`
 
   const sections = [
     { id: 'quickstart', label: '01 // QUICKSTART', icon: BookOpen },
-    { id: 'canvas', label: '02 // CANVAS WORKFLOWS', icon: Network },
-    { id: 'telemetry', label: '03 // REAL-TIME METRICS', icon: Activity },
-    { id: 'api', label: '04 // API REFERENCE', icon: Code }
+    { id: 'telemetry', label: '02 // REAL-TIME METRICS', icon: Activity },
+    { id: 'api', label: '03 // API REFERENCE', icon: Code }
   ];
 
   return (
@@ -87,7 +86,7 @@ print(f"Workflow triggered. Execution ID: {response.execution_id}")`
             <div>
               <div className="flex items-center gap-2 mb-2 text-nocturnal-expedition/60 dark:text-mystic-mint/60 font-mono text-[10px] font-bold tracking-widest uppercase">
                 <span>///</span>
-                <span>NEXUS ENGINE SYSTEMS DOCUMENTATION</span>
+                <span>FLUXA ENGINE SYSTEMS DOCUMENTATION</span>
               </div>
               <h2 className="font-sans text-2xl md:text-3xl font-bold tracking-tight text-oceanic-noir dark:text-white">
                 Developer Documentation Portal
@@ -150,7 +149,7 @@ print(f"Workflow triggered. Execution ID: {response.execution_id}")`
                     Quickstart Guide
                   </h3>
                   <p className="text-sm md:text-base text-nocturnal-expedition/80 dark:text-mystic-mint/80 leading-relaxed">
-                    Integrate your data pipeline with the Nexus sub-millisecond execution engine in less than 3 minutes.
+                    Integrate your data pipeline with the Fluxa sub-millisecond execution engine in less than 3 minutes.
                   </p>
                 </div>
 
@@ -198,41 +197,6 @@ print(f"Workflow triggered. Execution ID: {response.execution_id}")`
                       </button>
                       <pre className="pr-10">{codeSnippets.pythonSnippet}</pre>
                     </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeSection === 'canvas' && (
-              <div className="space-y-8 max-w-3xl animate-fade-in-up">
-                <div>
-                  <h3 className="text-xl font-bold text-oceanic-noir dark:text-white mb-2 flex items-center gap-2">
-                    <Network className="w-5 h-5 text-deep-saffron dark:text-forsythia" />
-                    Infinite Visual Workflows
-                  </h3>
-                  <p className="text-sm md:text-base text-nocturnal-expedition/80 dark:text-mystic-mint/80 leading-relaxed">
-                    Nexus comes prebuilt with a visual orchestration sandbox. Learn how to draw connections and auto-generate server code.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="border border-mystic-mint/40 p-5 rounded-2xl bg-white dark:bg-nocturnal-expedition">
-                    <span className="font-mono text-xs text-deep-saffron dark:text-forsythia font-bold block mb-2">01 // VISUAL NODES</span>
-                    <p className="text-xs text-nocturnal-expedition/80 dark:text-mystic-mint/80 leading-relaxed">
-                      Place data sources, transformation layers, machine learning LLM models, and Webhook dispatchers anywhere. Each node runs in its own highly sandboxed environment for strict safety isolation.
-                    </p>
-                  </div>
-                  <div className="border border-mystic-mint/40 p-5 rounded-2xl bg-white dark:bg-nocturnal-expedition">
-                    <span className="font-mono text-xs text-deep-saffron dark:text-forsythia font-bold block mb-2">02 // NODE DISPATCHER</span>
-                    <p className="text-xs text-nocturnal-expedition/80 dark:text-mystic-mint/80 leading-relaxed">
-                      We automate pipeline scaling dynamically. If your ingress traffic suddenly spikes from 1K items to 1M items per second, nodes automatically spin up across our global distributed cluster.
-                    </p>
-                  </div>
-                  <div className="border border-mystic-mint/40 p-5 rounded-2xl bg-white dark:bg-nocturnal-expedition md:col-span-2">
-                    <span className="font-mono text-xs text-deep-saffron dark:text-forsythia font-bold block mb-2">03 // CODE EXPORT</span>
-                    <p className="text-xs text-nocturnal-expedition/80 dark:text-mystic-mint/80 leading-relaxed">
-                      Every canvas diagram converts directly into a native serverless deployment scheme. Export as a structured Dockerfile, Kubernetes configurations, or a single Serverless Manifest easily.
-                    </p>
                   </div>
                 </div>
               </div>

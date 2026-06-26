@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Rounded square background of the logo -->
+  <rect x="2" y="2" width="28" height="28" rx="7" fill="#172B36" />
+  
+  <!-- Database barrel from the image -->
+  <path d="M10 12C10 10.5 12.686 9.5 16 9.5C19.314 9.5 22 10.5 22 12M10 12V20C10 21.5 12.686 22.5 16 22.5C19.314 22.5 22 21.5 22 20V12M10 12C10 13.5 12.686 14.5 16 14.5C19.314 14.5 22 13.5 22 12" stroke="#FFC801" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M10 16C10 17.5 12.686 18.5 16 18.5C19.314 18.5 22 17.5 22 16" stroke="#FFC801" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Top-right status / alert dot badge -->
+  <circle cx="25.5" cy="6.5" r="4" fill="#FF9932" stroke="#172B36" stroke-width="1.5" />
+</svg>

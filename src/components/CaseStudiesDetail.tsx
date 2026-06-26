@@ -55,34 +55,6 @@ const CASE_STUDIES: CaseStudyContent[] = [
     ]
   },
   {
-    id: 2,
-    slug: 'nexusdata',
-    company: 'NexusData Logistics',
-    title: 'NexusData High-Throughput Engine',
-    description: 'Processing 450,000 telemetry sensor payloads per second with sub-millisecond edge queue constraints.',
-    industry: 'Supply Chain Operations',
-    challenge: 'Processing 450,000 global sensor telemetry updates per second across multiple regional APIs introduced message duplication and thread blocking issues.',
-    solution: 'Deployed high-throughput edge nodes with custom non-blocking lockless ring buffers to guarantee single-pass ingestion with rigorous sub-millisecond constraints.',
-    architecture: {
-      title: 'Lockless Ingestion Pipeline',
-      steps: [
-        { label: 'Edge Telemetry Gateway', detail: 'REST/WebSocket ingestion endpoint parsing sensor payloads.', status: 'ACTIVE' },
-        { label: 'Lockless Ring Buffer', detail: 'Memory-mapped ring buffer optimizing sequential disk writes.', status: 'ACTIVE' },
-        { label: 'SLA Guard Controller', detail: 'Active backpressure regulator dropping or scaling workers.', status: 'STABLE' },
-      ]
-    },
-    metrics: [
-      { value: '0.05 ms', label: 'Average Latency', icon: 'trending' },
-      { value: '99.99%', label: 'Single-Pass Rate', icon: 'pie' },
-      { value: '450k/s', label: 'Ingested Telemetry', icon: 'cube' }
-    ],
-    slaDetails: [
-      { parameter: 'System Latency Limit', standard: '500.0 ms SLA limit', nexusData: '0.05 ms actual average' },
-      { parameter: 'Packet Drop Margin', standard: 'Max 0.1% allowance', nexusData: '0.00% packet loss guaranteed' },
-      { parameter: 'Failover Response', standard: 'Within 5 minutes', nexusData: 'Instant active-active failover' }
-    ]
-  },
-  {
     id: 3,
     slug: 'gridflow',
     company: 'GridFlow Global',

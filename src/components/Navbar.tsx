@@ -118,7 +118,7 @@ export function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-sm font-black text-oceanic-noir leading-none tracking-tight">
-                NEXUS<span className="text-deep-saffron">DATA</span>
+                FLUX<span className="text-deep-saffron">A</span>
               </span>
               <span className="font-mono text-[8px] text-nocturnal-expedition/50 uppercase tracking-widest mt-0.5">
                 Stream Engine
@@ -127,7 +127,7 @@ export function Navbar() {
           </a>
 
           {/* Desktop Links with Active State Highlighting Underlines */}
-          <div className="hidden lg:flex items-center gap-1 bg-white/40 border border-mystic-mint/35 p-1 rounded-2xl">
+          <div className="hidden lg:flex items-center gap-1 bg-white/40 dark:bg-oceanic-noir/30 border border-mystic-mint/35 p-1 rounded-2xl">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href;
               return (
@@ -137,8 +137,8 @@ export function Navbar() {
                   onClick={(e) => handleLinkClick(e, link.href)}
                   className={`relative px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase transition-all duration-200 ${
                     isActive 
-                      ? 'text-oceanic-noir font-extrabold' 
-                      : 'text-nocturnal-expedition/75 hover:text-oceanic-noir hover:bg-white/50'
+                      ? 'text-oceanic-noir dark:text-white font-extrabold' 
+                      : 'text-nocturnal-expedition/75 hover:text-oceanic-noir dark:text-mystic-mint/75 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/5'
                   }`}
                 >
                   {link.label}
@@ -151,10 +151,9 @@ export function Navbar() {
           </div>
 
           {/* Dynamic Status / CTA cluster */}
-          {/* Dynamic Status / CTA cluster */}
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Live Pipeline Telemetry Status Gauge */}
-            <div className="flex items-center gap-2.5 px-3 py-1.5 bg-white/60 border border-mystic-mint/70 rounded-xl shadow-sm text-nocturnal-expedition select-none">
+            <div className="hidden sm:flex items-center gap-2.5 px-3 py-1.5 bg-white/60 border border-mystic-mint/70 rounded-xl shadow-sm text-nocturnal-expedition select-none">
               <div className="relative flex items-center justify-center">
                 <span className="w-2 h-2 rounded-full bg-green-500" />
                 <span className="absolute w-2.5 h-2.5 rounded-full bg-green-400 animate-ping opacity-75" />
@@ -167,20 +166,37 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* Desktop Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="p-2.5 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-all duration-200 active:scale-95 shadow-sm cursor-pointer flex items-center justify-center"
-              aria-label="Toggle visual theme"
-              id="desktop-theme-toggle"
-            >
-              {theme === 'light' ? (
-                <Moon className="w-4 h-4 text-nocturnal-expedition animate-delay-100" />
-              ) : (
-                <Sun className="w-4 h-4 text-forsythia animate-pulse" />
-              )}
-            </button>
+            {/* Two Theme Switcher Buttons side-by-side inside a gorgeous pill container */}
+            <div className="flex items-center gap-1 p-1 bg-white/60 dark:bg-oceanic-noir/50 border border-mystic-mint dark:border-mystic-mint/20 rounded-xl shadow-sm">
+              <button
+                onClick={() => setTheme('light')}
+                className={`p-1.5 rounded-lg transition-all duration-200 cursor-pointer flex items-center justify-center ${
+                  theme === 'light'
+                    ? 'bg-oceanic-noir text-forsythia shadow-inner'
+                    : 'text-nocturnal-expedition/50 dark:text-mystic-mint/40 hover:text-oceanic-noir dark:hover:text-white'
+                }`}
+                title="Set Light Mode"
+                aria-label="Set Light Mode"
+                id="theme-switcher-light"
+              >
+                <Sun className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme('dark')}
+                className={`p-1.5 rounded-lg transition-all duration-200 cursor-pointer flex items-center justify-center ${
+                  theme === 'dark'
+                    ? 'bg-mystic-mint text-nocturnal-expedition dark:bg-mystic-mint/10 dark:text-white shadow-inner'
+                    : 'text-nocturnal-expedition/50 dark:text-mystic-mint/40 hover:text-oceanic-noir dark:hover:text-white'
+                }`}
+                title="Set Dark Mode"
+                aria-label="Set Dark Mode"
+                id="theme-switcher-dark"
+              >
+                <Moon className="w-4 h-4" />
+              </button>
+            </div>
 
+            {/* Free Trial Button (Visible sm and up) */}
             <button 
               onClick={() => {
                 const element = document.getElementById('pricing');
@@ -188,50 +204,15 @@ export function Navbar() {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="px-4 py-2 bg-oceanic-noir hover:bg-nocturnal-expedition text-arctic-powder font-mono text-xs font-bold rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 duration-150 cursor-pointer"
+              className="hidden sm:block px-4 py-2 bg-oceanic-noir hover:bg-nocturnal-expedition text-arctic-powder font-mono text-xs font-bold rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 duration-150 cursor-pointer whitespace-nowrap"
             >
               FREE TRIAL
             </button>
-          </div>
 
-          {/* Mobile Theme Toggle & Menu Toggle Buttons */}
-          <div className="flex sm:hidden items-center gap-2 lg:hidden">
-            <button
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors shadow-sm cursor-pointer flex items-center justify-center"
-              aria-label="Toggle visual theme"
-            >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5 text-nocturnal-expedition" />
-              ) : (
-                <Sun className="w-5 h-5 text-forsythia" />
-              )}
-            </button>
+            {/* Mobile Menu Toggle Button (Visible below lg) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors focus:outline-none focus:ring-2 focus:ring-deep-saffron shadow-sm cursor-pointer"
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-
-          {/* Tablet/Medium Screen Menu Toggle Button (when sm is matched but lg is not) */}
-          <div className="hidden sm:flex lg:hidden items-center gap-2">
-            <button
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors shadow-sm cursor-pointer flex items-center justify-center"
-              aria-label="Toggle visual theme"
-            >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5 text-nocturnal-expedition" />
-              ) : (
-                <Sun className="w-5 h-5 text-forsythia" />
-              )}
-            </button>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors focus:outline-none focus:ring-2 focus:ring-deep-saffron shadow-sm cursor-pointer"
+              className="p-2.5 lg:hidden rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors focus:outline-none focus:ring-2 focus:ring-deep-saffron shadow-sm cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -254,7 +235,7 @@ export function Navbar() {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Ingestion Telemetry Display inside Mobile Nav */}
+           {/* Ingestion Telemetry Display inside Mobile Nav */}
           <div className="flex items-center gap-3 bg-white border border-mystic-mint/80 p-3 rounded-2xl mb-2">
             <div className="relative flex items-center justify-center">
               <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
@@ -265,6 +246,37 @@ export function Navbar() {
               <span className="text-nocturnal-expedition/50 mt-0.5">
                 ACTIVE RX RATE: {ingestionSpeed.toLocaleString()} PKT/SEC
               </span>
+            </div>
+          </div>
+
+          {/* Mobile Theme Switcher Duo */}
+          <div className="flex items-center justify-between bg-white border border-mystic-mint/80 p-3 rounded-2xl mb-2">
+            <span className="font-mono text-xs font-bold text-nocturnal-expedition">VISUAL THEME</span>
+            <div className="flex items-center gap-1.5 p-1 bg-arctic-powder/50 dark:bg-oceanic-noir/50 border border-mystic-mint rounded-xl shadow-sm">
+              <button
+                onClick={() => setTheme('light')}
+                className={`p-2 rounded-lg transition-all duration-200 cursor-pointer flex items-center justify-center ${
+                  theme === 'light'
+                    ? 'bg-oceanic-noir text-forsythia shadow-inner'
+                    : 'text-nocturnal-expedition/50 dark:text-mystic-mint/40 hover:text-oceanic-noir dark:hover:text-white'
+                }`}
+                aria-label="Set Light Theme"
+                id="mobile-theme-light"
+              >
+                <Sun className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme('dark')}
+                className={`p-2 rounded-lg transition-all duration-200 cursor-pointer flex items-center justify-center ${
+                  theme === 'dark'
+                    ? 'bg-mystic-mint text-nocturnal-expedition dark:bg-mystic-mint/10 dark:text-white shadow-inner'
+                    : 'text-nocturnal-expedition/50 dark:text-mystic-mint/40 hover:text-oceanic-noir dark:hover:text-white'
+                }`}
+                aria-label="Set Dark Theme"
+                id="mobile-theme-dark"
+              >
+                <Moon className="w-4 h-4" />
+              </button>
             </div>
           </div>
 

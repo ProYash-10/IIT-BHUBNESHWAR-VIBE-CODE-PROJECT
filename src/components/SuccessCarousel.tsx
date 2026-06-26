@@ -26,17 +26,6 @@ const STORIES: SuccessStory[] = [
     linkText: 'Read stacksync case study'
   },
   {
-    id: 2,
-    company: 'NexusData Logistics',
-    metric: '0.05 ms',
-    metricLabel: 'Average Engine Latency',
-    industry: 'Supply Chain Operations',
-    quote: 'We operate at hundreds of millions of events per second. Having a robust, single-point ingestion system with sub-millisecond reliability is non-negotiable.',
-    author: 'David Chen',
-    role: 'Principal Architect',
-    linkText: 'Read nexusdata SLA review'
-  },
-  {
     id: 3,
     company: 'GridFlow Global',
     metric: '99.999%',
