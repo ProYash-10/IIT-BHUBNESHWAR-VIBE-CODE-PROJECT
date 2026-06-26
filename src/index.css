@@ -89,3 +89,72 @@ body {
 a, button, [role="button"], .cursor-pointer {
   cursor: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 6L26 18L17 20L15 29L10 6Z' fill='%23114C5A' stroke='%23FF9932' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"), pointer;
 }
+
+/* High-Contrast Dark Theme Overrides */
+html.dark {
+  --color-arctic-powder: #05080b;             /* Deepest rich black background for the main canvas */
+  --color-oceanic-noir: #020405;              /* Ultra-dark backing for core stream engines */
+  --color-nocturnal-expedition: #091317;      /* Extremely elegant deep space teal/black for cards */
+  --color-mystic-mint: #172a30;               /* Darker jade border color for razor-sharp grid structures */
+}
+
+/* Ensure body background adapts perfectly in dark mode */
+html.dark body {
+  background-color: #05080b !important;
+  color: #f1f6f4 !important;
+}
+
+/* Redefine text elements for high-contrast accessibility */
+html.dark .text-oceanic-noir,
+html.dark [class*="text-oceanic-noir"] {
+  color: #ffffff !important;
+}
+
+html.dark .text-nocturnal-expedition,
+html.dark [class*="text-nocturnal-expedition"] {
+  color: #c5ded3 !important; /* Vibrant mint green/white */
+}
+
+/* Retain light text colors inside dark sections that must remain light */
+html.dark .text-arctic-powder,
+html.dark [class*="text-arctic-powder"] {
+  color: #ffffff !important;
+}
+
+/* Invert standard white cards into dark high-contrast cards */
+html.dark .bg-white {
+  background-color: #081014 !important;
+}
+
+html.dark .bg-white\/40 {
+  background-color: rgba(8, 16, 20, 0.4) !important;
+}
+
+html.dark .bg-white\/50 {
+  background-color: rgba(8, 16, 20, 0.5) !important;
+}
+
+html.dark .bg-white\/60 {
+  background-color: rgba(8, 16, 20, 0.6) !important;
+}
+
+html.dark .bg-white\/80 {
+  background-color: rgba(8, 16, 20, 0.8) !important;
+}
+
+/* Refine active underlines in dark mode */
+html.dark .bg-deep-saffron {
+  background-color: #ff9932 !important;
+}
+
+/* Convert radial backdrops into dark theme variations */
+html.dark .bg-\[radial-gradient\(ellipse_at_center\,rgba\(241\,246\,244\,0\.4\)_0\%\,rgba\(241\,246\,244\,1\)_70\%\)\] {
+  background-image: radial-gradient(ellipse at center, rgba(8, 16, 20, 0.4) 0%, #05080b 70%) !important;
+}
+
+/* Smooth out transition when toggling */
+* {
+  transition-property: background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}

@@ -17,9 +17,11 @@ import { LegalOverlay } from './components/LegalOverlay';
 import { Navbar } from './components/Navbar';
 import { WorkflowCanvas } from './components/WorkflowCanvas';
 import { NotFound404 } from './components/NotFound404';
+import { DocsOverlay } from './components/DocsOverlay';
 
 export default function App() {
   const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [isDocsOpen, setIsDocsOpen] = useState(false);
   const [activeLegalTab, setActiveLegalTab] = useState<'terms' | 'privacy' | 'compliance'>('terms');
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
@@ -93,7 +95,11 @@ export default function App() {
             <button className="px-8 py-4 rounded-xl bg-oceanic-noir text-arctic-powder font-mono font-bold text-lg hover:bg-nocturnal-expedition transition-all duration-[200ms] hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(17,76,90,0.2)] active:translate-y-0 w-full sm:w-auto">
               Start Free Trial
             </button>
-            <button className="px-8 py-4 rounded-xl bg-white/50 border-2 border-mystic-mint text-oceanic-noir font-mono font-bold text-lg hover:bg-white transition-all duration-[200ms] hover:-translate-y-1 hover:shadow-sm active:translate-y-0 backdrop-blur-sm w-full sm:w-auto">
+            <button 
+              onClick={() => setIsDocsOpen(true)}
+              className="px-8 py-4 rounded-xl bg-white/50 border-2 border-mystic-mint text-oceanic-noir font-mono font-bold text-lg hover:bg-white transition-all duration-[200ms] hover:-translate-y-1 hover:shadow-sm active:translate-y-0 backdrop-blur-sm w-full sm:w-auto cursor-pointer"
+              id="hero-read-docs-btn"
+            >
               Read Documentation
             </button>
           </div>
@@ -166,6 +172,12 @@ export default function App() {
         isOpen={isLegalOpen} 
         onClose={() => setIsLegalOpen(false)} 
         initialTab={activeLegalTab} 
+      />
+
+      {/* Interactive System Documentation Overlay */}
+      <DocsOverlay 
+        isOpen={isDocsOpen} 
+        onClose={() => setIsDocsOpen(false)} 
       />
     </main>
   );

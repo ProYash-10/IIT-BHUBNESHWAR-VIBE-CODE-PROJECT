@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Activity, Terminal, Database } from 'lucide-react';
+import { Menu, X, Activity, Terminal, Database, Sun, Moon } from 'lucide-react';
 
 interface NavLink {
   label: string;
@@ -21,6 +21,25 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [ingestionSpeed, setIngestionSpeed] = useState(452900);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('nexus-theme');
+      if (stored === 'light' || stored === 'dark') {
+        return stored;
+      }
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('nexus-theme', theme);
+  }, [theme]);
 
   // Dynamic telemetry fake speed update to make the badge feel incredibly "alive"
   useEffect(() => {
@@ -132,6 +151,7 @@ export function Navbar() {
           </div>
 
           {/* Dynamic Status / CTA cluster */}
+          {/* Dynamic Status / CTA cluster */}
           <div className="hidden sm:flex items-center gap-4">
             {/* Live Pipeline Telemetry Status Gauge */}
             <div className="flex items-center gap-2.5 px-3 py-1.5 bg-white/60 border border-mystic-mint/70 rounded-xl shadow-sm text-nocturnal-expedition select-none">
@@ -147,6 +167,20 @@ export function Navbar() {
               </div>
             </div>
 
+            {/* Desktop Theme Toggle */}
+            <button
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              className="p-2.5 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-all duration-200 active:scale-95 shadow-sm cursor-pointer flex items-center justify-center"
+              aria-label="Toggle visual theme"
+              id="desktop-theme-toggle"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-4 h-4 text-nocturnal-expedition animate-delay-100" />
+              ) : (
+                <Sun className="w-4 h-4 text-forsythia animate-pulse" />
+              )}
+            </button>
+
             <button 
               onClick={() => {
                 const element = document.getElementById('pricing');
@@ -160,14 +194,49 @@ export function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 lg:hidden rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors focus:outline-none focus:ring-2 focus:ring-deep-saffron shadow-sm cursor-pointer"
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile Theme Toggle & Menu Toggle Buttons */}
+          <div className="flex sm:hidden items-center gap-2 lg:hidden">
+            <button
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors shadow-sm cursor-pointer flex items-center justify-center"
+              aria-label="Toggle visual theme"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-5 h-5 text-nocturnal-expedition" />
+              ) : (
+                <Sun className="w-5 h-5 text-forsythia" />
+              )}
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors focus:outline-none focus:ring-2 focus:ring-deep-saffron shadow-sm cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+
+          {/* Tablet/Medium Screen Menu Toggle Button (when sm is matched but lg is not) */}
+          <div className="hidden sm:flex lg:hidden items-center gap-2">
+            <button
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors shadow-sm cursor-pointer flex items-center justify-center"
+              aria-label="Toggle visual theme"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-5 h-5 text-nocturnal-expedition" />
+              ) : (
+                <Sun className="w-5 h-5 text-forsythia" />
+              )}
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-xl border border-mystic-mint/80 bg-white/50 hover:bg-white text-oceanic-noir transition-colors focus:outline-none focus:ring-2 focus:ring-deep-saffron shadow-sm cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
 
         </div>
       </nav>
