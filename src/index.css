@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-arctic-powder: #F1F6F4;
+  --color-forsythia: #FFC801;
+  --color-nocturnal-expedition: #114C5A;
+  --color-mystic-mint: #D9E8E2;
+  --color-deep-saffron: #FF9932;
+  --color-oceanic-noir: #172B36;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --animate-fade-in-up: fade-in-up 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-stream-entry: stream-entry 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pulse-glowing: pulse-glowing 2s infinite ease-in-out;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stream-entry {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+    background-color: rgba(255, 200, 1, 0.12);
+  }
+  35% {
+    background-color: rgba(255, 200, 1, 0.08);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    background-color: transparent;
+  }
+}
+
+@keyframes pulse-glowing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 0 0 rgba(255, 200, 1, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0 0 10px 4px rgba(255, 200, 1, 0.2);
+  }
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+
+/* Custom Scrollbar for the entire website */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-arctic-powder);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-nocturnal-expedition);
+  border-radius: 5px;
+  border: 2px solid var(--color-arctic-powder);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-oceanic-noir);
+}
+
+/* Custom Cursor */
+body {
+  cursor: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 4L24 16L15 18L13 27L8 4Z' fill='%23172B36' stroke='%23FFC801' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"), auto;
+}
+
+a, button, [role="button"], .cursor-pointer {
+  cursor: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 6L26 18L17 20L15 29L10 6Z' fill='%23114C5A' stroke='%23FF9932' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"), pointer;
+}

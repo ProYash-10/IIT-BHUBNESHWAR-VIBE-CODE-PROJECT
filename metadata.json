@@ -1,0 +1,6 @@
+{
+  "name": "Data Automation SaaS",
+  "description": "Premium AI-driven data automation SaaS landing page with matrix-driven pricing and bento grid layout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
